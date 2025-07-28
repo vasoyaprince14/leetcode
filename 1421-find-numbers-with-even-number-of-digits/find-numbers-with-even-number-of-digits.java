@@ -10,11 +10,6 @@ class Solution {
         return count;
     }
     public int numOfDigit(int num){
-        int count = 0;
-        while(num!=0){
-            num = num/10;
-            count++;
-        }
-        return count;
+        return(int) Math.log10(num) +1;
     }
 }
