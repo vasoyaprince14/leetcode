@@ -71,6 +71,6 @@ class Solution {
             }
 
         }
-        return mid;
+        return s;
     }
 }
