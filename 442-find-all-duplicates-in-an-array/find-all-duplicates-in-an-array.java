@@ -1,34 +1,32 @@
 class Solution {
     public List<Integer> findDuplicates(int[] nums) {
         int i = 0;
+        List<Integer> result = new ArrayList<>();
 
-        List<Integer> awns = new ArrayList<>();
-
-        while( i < nums.length){
-            // if(nums[i] != i+1){
-                int correct = nums[i]-1;
-                if(nums[i] != nums[correct]){
-                    int temp = nums[correct];
-                    nums[correct] = nums[i];
-                    nums[i] = temp;
-                }
-                else{
-                    // awns.add(nums[i]);
-                    i++;
-                }
+        // Step 1: Place each number in its correct index using cyclic sort
+        while (i < nums.length) {
+            int correctIndex = nums[i] - 1;
+            // If current number is not at its correct index,
+            // AND the correct index doesn't already have the same number
+            if (nums[i] != nums[correctIndex]) {
+                // Swap nums[i] to its correct position
+                int temp = nums[correctIndex];
+                nums[correctIndex] = nums[i];
+                nums[i] = temp;
+            } else {
+                // If already in correct place OR duplicate detected, move forward
+                i++;
             }
-            // else{
-            //     i++;
-            // }
-        
-
-    for(i=0;i<nums.length;i++){
-        if(nums[i]!= i+1){
-            awns.add(nums[i]);
         }
+
+        // Step 2: Find numbers that are not in their correct position
+        // These are duplicates because their correct spot already had the same number
+        for (i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                result.add(nums[i]);
+            }
+        }
+
+        return result;
     }
-
-    return awns;
-
-}
 }
