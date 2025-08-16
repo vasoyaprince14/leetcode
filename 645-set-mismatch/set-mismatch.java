@@ -1,26 +1,31 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        int awns[] = new int[2];
-        int i =0;
-        while( i < nums.length){
-            int correct = nums[i] - 1;
-            if(nums[i] != nums[correct]){
+        // Step 1: Place numbers at their correct index using cyclic sort
+        int i = 0;
+        while (i < nums.length) {
+            int correct = nums[i] - 1; // correct index for nums[i]
+            
+            // If nums[i] is not at the correct index, swap it
+            if (nums[i] != nums[correct]) {
                 int temp = nums[correct];
                 nums[correct] = nums[i];
                 nums[i] = temp;
-            }
-            else{
+            } else {
+                // If it's already in the right place, move forward
                 i++;
             }
         }
 
-        for( i = 0 ;i<nums.length; i++){
-            if(nums[i] != i+1){
-                return new int[] { nums[i], i+1};
-
+        // Step 2: After sorting, find the mismatch
+        for (i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                // nums[i] → duplicate number
+                // i+1   → missing number
+                return new int[]{nums[i], i + 1};
             }
         }
-        return awns;
-        
+
+        // This should never be reached for valid input
+        return new int[]{-1, -1};
     }
 }
