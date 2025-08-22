@@ -3,19 +3,37 @@ class Solution {
         return bin (nums,target,0,nums.length-1);
     }
 
-    public int bin(int nums[], int target , int s, int e){
-        if(e<s){
+    public int bin (int arr[], int target, int s , int e){
+        if(s>e){
             return -1;
         }
         int mid = s + (e-s)/2;
-        if(nums[mid]== target){
+        if(arr[mid]== target){
             return mid;
         }
-        if(nums[mid]>target){
-           return bin(nums,target,s,mid-1);
+        else if (arr[mid]>target){
+            return bin(arr,target,s, mid -1);
         }
         else{
-            return bin(nums,target,mid+1,e);
+            return bin (arr, target ,mid +1,e);
         }
     }
+
+
+
+    // public int bin(int nums[], int target , int s, int e){
+    //     if(e<s){
+    //         return -1;
+    //     }
+    //     int mid = s + (e-s)/2;
+    //     if(nums[mid]== target){
+    //         return mid;
+    //     }
+    //     if(nums[mid]>target){
+    //        return bin(nums,target,s,mid-1);
+    //     }
+    //     else{
+    //         return bin(nums,target,mid+1,e);
+    //     }
+    // }
 }
