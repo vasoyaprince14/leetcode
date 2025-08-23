@@ -6,6 +6,9 @@ class Solution {
             if (num % i == 0){
                 // System.out.println(i);
                 sum +=i;
+                if(sum>num){
+                    return false;
+                }
             }
         }
 
