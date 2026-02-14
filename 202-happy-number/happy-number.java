@@ -3,15 +3,13 @@ class Solution {
         int s = n;
         int f = n;
 
-        while(f!=1){
-           s = square(s);
-            int temp = square(f);
-            f= square(temp);
-            if(s==f && s != 1){
-                return false;
-            }            
-        }
-        return true;
+        do{
+             s = square(s);
+             f = square(square(f));
+
+        }while(s!=f);
+
+        return s == 1;
     }
 
     public int square(int n){
